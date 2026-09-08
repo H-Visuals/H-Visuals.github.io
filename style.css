@@ -76,7 +76,7 @@ section{padding:clamp(64px,8vw,100px) var(--gutter)}
 .marquee{display:flex;gap:18px;padding:14px 0;overflow-x:auto;scrollbar-width:none;cursor:grab;-webkit-overflow-scrolling:touch}
 .marquee::-webkit-scrollbar{display:none}
 .marquee.dragging{cursor:grabbing;scroll-snap-type:none}
-.marquee.dragging .clip{pointer-events:none}
+
 .marquee>*{flex:none}
 @keyframes mqL{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @keyframes mqR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
