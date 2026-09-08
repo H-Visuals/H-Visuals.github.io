@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Henrik — Video Editor</title>
+<meta name="description" content="Turning your message into content that converts. Long-form YouTube, talking head and documentary edits for creators.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Living background: everything outside the cream medallion sways very slightly; the medallion itself is a static copy on top. -->
+<svg class="bg" viewBox="0 0 2400 1340" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="sway" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+      <!-- two noise fields at different scales/seeds; finer noise gives each vine, leaf and icon its own direction -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.009 0.011" numOctaves="2" seed="7" result="n1">
+        <animate attributeName="baseFrequency" dur="37s" repeatCount="indefinite"
+          values="0.009 0.011;0.0104 0.0098;0.0094 0.0118;0.0084 0.0106;0.009 0.011"
+          calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
+      </feTurbulence>
+      <feTurbulence type="fractalNoise" baseFrequency="0.0055 0.0045" numOctaves="2" seed="23" result="n2">
+        <animate attributeName="baseFrequency" dur="53s" repeatCount="indefinite"
+          values="0.0055 0.0045;0.0048 0.0056;0.006 0.005;0.0052 0.0041;0.0055 0.0045"
+          calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
+      </feTurbulence>
+      <feComposite in="n1" in2="n2" operator="arithmetic" k2="0.5" k3="0.5" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" xChannelSelector="R" yChannelSelector="G" scale="18">
+        <animate attributeName="scale" dur="20s" repeatCount="indefinite" values="13;24;16;21;13" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
+      </feDisplacementMap>
+    </filter>
+    <clipPath id="medallion"><circle cx="1216" cy="670" r="560"/></clipPath>
+    <filter id="grain" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="1"/></feComponentTransfer>
+    </filter>
+  </defs>
+  <image href="assets/frame.png" width="2400" height="1340" filter="url(#sway)"/>
+  <image href="assets/frame.png" width="2400" height="1340" clip-path="url(#medallion)"/>
+  <rect class="bg-grain" x="0" y="0" width="2400" height="1340" filter="url(#grain)"/>
+</svg>
+
+<nav class="nav" aria-label="Main">
+  <ul>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="top" style="margin-top:240px">
+  <div class="hero-inner">
+    <h1>Turning Your Message Into <em class="accent">Content That Converts.</em></h1>
+    <div class="stats">
+      <div class="stat"><strong data-count-views>0.0M+</strong><span>Views generated</span></div>
+      <div class="stat"><strong data-count-delivered>340+</strong><span>Videos delivered</span></div>
+      <div class="stat"><strong data-count-total>3.4M+</strong><span>Combined subscriber reach</span></div>
+    </div>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#contact">Get in touch ↗</a>
+      <a class="btn btn-ghost" href="#work">See the work</a>
+    </div>
+  </div>
+</header>
+
+<section class="creators" aria-labelledby="creators-h">
+  <div class="section-head"><h2 id="creators-h">Creators I've <em class="accent">worked with</em></h2></div>
+  <div class="polaroids">
+    <div class="polaroid"><a href="https://www.youtube.com/@Hamza97" target="_blank" rel="noopener"><img src="assets/hamza.png" alt="Hamza Ahmed"><b>Hamza Ahmed</b><small data-count="hamza">2.2M subscribers</small></a><span class="links"><a href="https://www.youtube.com/@Hamza97" target="_blank" rel="noopener">YouTube</a><a href="https://www.instagram.com/cultleaderhamza/" target="_blank" rel="noopener">Instagram</a></span></div>
+    <div class="polaroid"><a href="https://www.youtube.com/@mewingbymikemew" target="_blank" rel="noopener"><img src="assets/mike-mew.png" alt="Dr. Mike Mew"><b>Dr. Mike Mew</b><small data-count="mike-mew">660K subscribers</small></a><span class="links"><a href="https://www.youtube.com/@mewingbymikemew" target="_blank" rel="noopener">YouTube</a><a href="https://www.instagram.com/mewingbymikemew/" target="_blank" rel="noopener">Instagram</a></span></div>
+    <div class="polaroid"><a href="https://www.youtube.com/@realsolbrah" target="_blank" rel="noopener"><img src="assets/sol-brah.png" alt="Sol Brah"><b>Sol Brah</b><small data-count="sol-brah">300K followers</small></a><span class="links"><a href="https://www.youtube.com/@realsolbrah" target="_blank" rel="noopener">YouTube</a><a href="https://www.instagram.com/solbrah/" target="_blank" rel="noopener">Instagram</a></span></div>
+    <div class="polaroid"><a href="https://www.youtube.com/@JackhopkinsCEO" target="_blank" rel="noopener"><img src="assets/jack-hopkins.png" alt="Jack Hopkins"><b>Jack Hopkins</b><small data-count="jack-hopkins">220K subscribers</small></a><span class="links"><a href="https://www.youtube.com/@JackhopkinsCEO" target="_blank" rel="noopener">YouTube</a><a href="https://www.instagram.com/itsjackhopkins/" target="_blank" rel="noopener">Instagram</a></span></div>
+    <div class="polaroid"><a href="https://www.youtube.com/TheHarbonator" target="_blank" rel="noopener"><img src="assets/sam-harborne.png" alt="Sam Harborne"><b>Sam Harborne</b><small data-count="sam-harborne">23K subscribers</small></a><span class="links"><a href="https://www.youtube.com/TheHarbonator" target="_blank" rel="noopener">YouTube</a><a href="https://www.instagram.com/harbonator/" target="_blank" rel="noopener">Instagram</a></span></div>
+    <div class="polaroid"><a href="https://www.youtube.com/@Salsanchez_" target="_blank" rel="noopener"><img src="assets/sal-sanchez.png" alt="Sal Sanchez"><b>Sal Sanchez</b><small data-count="sal-sanchez">14K subscribers</small></a><span class="links"><a href="https://www.youtube.com/@Salsanchez_" target="_blank" rel="noopener">YouTube</a><a href="https://www.instagram.com/iamsalfx/" target="_blank" rel="noopener">Instagram</a></span></div>
+  </div>
+</section>
+
+<section class="work" id="work">
+  <div class="section-head">
+    <h2>Selected <em class="accent">work</em></h2>
+    <p>Talking head videos, vlogs, video sales letters and more — drag or scroll sideways, click to watch right here.</p>
+  </div>
+  <div class="rails">
+    <div class="filmstrip">
+      <div class="marquee left" data-dir="1">
+        <a class="clip" data-video="w3PufUlrr78" href="https://www.youtube.com/watch?v=w3PufUlrr78" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/w3PufUlrr78/hqdefault.jpg" alt="" loading="lazy"><span class="meta"><span class="tag">Talking head</span></span><span class="play">▶</span></a>
+        <a class="clip" data-video="UO-Y65Ng1pY" href="https://www.youtube.com/watch?v=UO-Y65Ng1pY" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/UO-Y65Ng1pY/hqdefault.jpg" alt="" loading="lazy"><span class="meta"><span class="tag">Video sales letter</span></span><span class="play">▶</span></a>
+        <a class="clip" data-video="AcGAB2hgkiI" href="https://www.youtube.com/watch?v=AcGAB2hgkiI" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/AcGAB2hgkiI/hqdefault.jpg" alt="" loading="lazy"><span class="meta"><span class="tag">Talking head</span></span><span class="play">▶</span></a>
+        <a class="clip" data-video="bReNqAlgp2w" href="https://www.youtube.com/watch?v=bReNqAlgp2w" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/bReNqAlgp2w/hqdefault.jpg" alt="" loading="lazy"><span class="meta"><span class="tag">Vlog</span></span><span class="play">▶</span></a>
+        <a class="clip" data-video="j3xlJ7vghxU" href="https://www.youtube.com/watch?v=j3xlJ7vghxU" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/j3xlJ7vghxU/hqdefault.jpg" alt="" loading="lazy"><span class="meta"><span class="tag">Talking head</span></span><span class="play">▶</span></a>
+        <a class="clip" data-video="h6e4jgIcKsY" href="https://www.youtube.com/watch?v=h6e4jgIcKsY" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/h6e4jgIcKsY/hqdefault.jpg" alt="" loading="lazy"><span class="meta"><span class="tag">Podcast intro</span></span><span class="play">▶</span></a>
+        <a class="clip" data-video="w3PufUlrr78" href="https://www.youtube.com/watch?v=w3PufUlrr78" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="https://img.youtube.com/vi/w3PufUlrr78/hqdefault.jpg" alt="" loading="lazy"><span class="meta"><span class="tag">Talking head</span></span><span class="play">▶</span></a>
+        <a class="clip" data-video="UO-Y65Ng1pY" href="https://www.youtube.com/watch?v=UO-Y65Ng1pY" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="https://img.youtube.com/vi/UO-Y65Ng1pY/hqdefault.jpg" alt="" loading="lazy"><span class="meta"><span class="tag">Video sales letter</span></span><span class="play">▶</span></a>
+        <a class="clip" data-video="AcGAB2hgkiI" href="https://www.youtube.com/watch?v=AcGAB2hgkiI" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="https://img.youtube.com/vi/AcGAB2hgkiI/hqdefault.jpg" alt="" loading="lazy"><span class="meta"><span class="tag">Talking head</span></span><span class="play">▶</span></a>
+        <a class="clip" data-video="bReNqAlgp2w" href="https://www.youtube.com/watch?v=bReNqAlgp2w" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="https://img.youtube.com/vi/bReNqAlgp2w/hqdefault.jpg" alt="" loading="lazy"><span class="meta"><span class="tag">Vlog</span></span><span class="play">▶</span></a>
+        <a class="clip" data-video="j3xlJ7vghxU" href="https://www.youtube.com/watch?v=j3xlJ7vghxU" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="https://img.youtube.com/vi/j3xlJ7vghxU/hqdefault.jpg" alt="" loading="lazy"><span class="meta"><span class="tag">Talking head</span></span><span class="play">▶</span></a>
+        <a class="clip" data-video="h6e4jgIcKsY" href="https://www.youtube.com/watch?v=h6e4jgIcKsY" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="https://img.youtube.com/vi/h6e4jgIcKsY/hqdefault.jpg" alt="" loading="lazy"><span class="meta"><span class="tag">Podcast intro</span></span><span class="play">▶</span></a>
+      </div>
+    </div>
+    <div class="filmstrip">
+      <div class="marquee right" data-dir="-1">
+        <a class="clip" data-video="ib_X9yG3E98" href="https://www.youtube.com/watch?v=ib_X9yG3E98" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/ib_X9yG3E98/hqdefault.jpg" alt="" loading="lazy"><span class="meta"><span class="tag">Introduction video</span></span><span class="play">▶</span></a>
+        <a class="clip" data-video="vJhMwyXCnVw" href="https://www.youtube.com/watch?v=vJhMwyXCnVw" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/vJhMwyXCnVw/hqdefault.jpg" alt="" loading="lazy"><span class="meta"><span class="tag">Talking head</span></span><span class="play">▶</span></a>
+        <a class="clip" data-video="t-fpKy6HR5Q" href="https://www.youtube.com/watch?v=t-fpKy6HR5Q" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/t-fpKy6HR5Q/hqdefault.jpg" alt="" loading="lazy"><span class="meta"><span class="tag">Vlog</span></span><span class="play">▶</span></a>
+        <a class="clip" data-video="shU_gV5Xq-Q" href="https://www.youtube.com/watch?v=shU_gV5Xq-Q" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/shU_gV5Xq-Q/hqdefault.jpg" alt="" loading="lazy"><span class="meta"><span class="tag">Talking head</span></span><span class="play">▶</span></a>
+        <a class="clip" data-video="jHbfqacKHmk" href="https://www.youtube.com/watch?v=jHbfqacKHmk" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/jHbfqacKHmk/hqdefault.jpg" alt="" loading="lazy"><span class="meta"><span class="tag">Video sales letter</span></span><span class="play">▶</span></a>
+        <a class="clip" data-video="ib_X9yG3E98" href="https://www.youtube.com/watch?v=ib_X9yG3E98" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="https://img.youtube.com/vi/ib_X9yG3E98/hqdefault.jpg" alt="" loading="lazy"><span class="meta"><span class="tag">Introduction video</span></span><span class="play">▶</span></a>
+        <a class="clip" data-video="vJhMwyXCnVw" href="https://www.youtube.com/watch?v=vJhMwyXCnVw" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="https://img.youtube.com/vi/vJhMwyXCnVw/hqdefault.jpg" alt="" loading="lazy"><span class="meta"><span class="tag">Talking head</span></span><span class="play">▶</span></a>
+        <a class="clip" data-video="t-fpKy6HR5Q" href="https://www.youtube.com/watch?v=t-fpKy6HR5Q" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="https://img.youtube.com/vi/t-fpKy6HR5Q/hqdefault.jpg" alt="" loading="lazy"><span class="meta"><span class="tag">Vlog</span></span><span class="play">▶</span></a>
+        <a class="clip" data-video="shU_gV5Xq-Q" href="https://www.youtube.com/watch?v=shU_gV5Xq-Q" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="https://img.youtube.com/vi/shU_gV5Xq-Q/hqdefault.jpg" alt="" loading="lazy"><span class="meta"><span class="tag">Talking head</span></span><span class="play">▶</span></a>
+        <a class="clip" data-video="jHbfqacKHmk" href="https://www.youtube.com/watch?v=jHbfqacKHmk" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="https://img.youtube.com/vi/jHbfqacKHmk/hqdefault.jpg" alt="" loading="lazy"><span class="meta"><span class="tag">Video sales letter</span></span><span class="play">▶</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="section-head"><h2>Hear directly <em class="accent">from my clients</em></h2></div>
+  <div class="video-reviews">
+    <div class="vreview"><a class="clip" data-video="Q1KXRIxHq0s" href="https://www.youtube.com/watch?v=Q1KXRIxHq0s" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/Q1KXRIxHq0s/hqdefault.jpg" alt="" loading="lazy"><span class="play">▶</span></a><div class="who"><img class="avatar" src="assets/hamza.png" alt=""><div><b>Hamza Ahmed</b><small data-count="hamza">2.2M subscribers</small></div><span class="stars">★★★★★</span></div><p class="vquote">“This is fucking sick man!”</p></div>
+    <div class="vreview"><a class="clip" data-video="I0_Hkz_zO_E" href="https://www.youtube.com/watch?v=I0_Hkz_zO_E" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/I0_Hkz_zO_E/hqdefault.jpg" alt="" loading="lazy"><span class="play">▶</span></a><div class="who"><img class="avatar" src="assets/hamza.png" alt=""><div><b>Hamza Ahmed</b><small data-count="hamza">2.2M subscribers</small></div><span class="stars">★★★★★</span></div><p class="vquote">“This is a masterpiece”</p></div>
+    <div class="vreview"><a class="clip" data-video="HWMuilW5DQc" href="https://www.youtube.com/watch?v=HWMuilW5DQc" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/HWMuilW5DQc/hqdefault.jpg" alt="" loading="lazy"><span class="play">▶</span></a><div class="who"><img class="avatar" src="assets/sam-harborne.png" alt=""><div><b>Sam Harborne</b><small data-count="sam-harborne">23K subscribers</small></div><span class="stars">★★★★★</span></div><p class="vquote">“Henrik is the best Video Editor I’ve ever worked with”</p></div>
+    <div class="vreview"><a class="clip" data-video="GtIaL5L8z8I" href="https://www.youtube.com/shorts/GtIaL5L8z8I" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/GtIaL5L8z8I/hqdefault.jpg" alt="" loading="lazy"><span class="play">▶</span></a><div class="who"><img class="avatar" src="assets/denmo.png" alt=""><div><b>Denmo</b></div><span class="stars">★★★★★</span></div><p class="vquote">“Absolute killer Video Editor”</p></div>
+  </div>
+  <div class="quotes">
+    <blockquote class="quote"><span class="stars">★★★★★</span><p>“Thanks for the great work mate, spot on first episode, really impressed.”</p><div class="who"><img class="avatar" src="assets/jack-hopkins.png" alt=""><div><b>Jack Hopkins</b><small data-count="jack-hopkins">220K subscribers</small></div></div><span class="stamp">approved</span></blockquote>
+    <blockquote class="quote"><span class="stars">★★★★★</span><p>“Legend bro. This is high quality stuff. Super keen to work together once I get you even better footage.”</p><div class="who"><img class="avatar" src="assets/sol-brah.png" alt=""><div><b>Sol Brah</b><small data-count="sol-brah">300K followers</small></div></div><span class="stamp">approved</span></blockquote>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <div class="section-head"><h2>From footage to final cut <em class="accent">in 7 days.</em></h2></div>
+  <div class="steps">
+    <div class="step"><div class="num">01</div><div class="day">Day 1</div><h3>Brief &amp; footage</h3><p>You send the raw files and one sentence on what the video is really about. I come back with the story angle before touching a timeline.</p></div>
+    <div class="step"><div class="num">02</div><div class="day">Days 2–3</div><h3>Story assembly</h3><p>Selects, structure, pacing. Cut for retention first: strong open, tension, payoff, no dead air.</p></div>
+    <div class="step"><div class="num">03</div><div class="day">Day 4</div><h3>Sound, graphics &amp; polish</h3><p>Sound design, music, colour and motion graphics in Premiere and After Effects. Where footage stops looking like footage.</p></div>
+    <div class="step"><div class="num">04</div><div class="day">Day 5</div><h3>Revisions &amp; delivery</h3><p>Timestamped notes, two rounds of revisions, then final export.</p></div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-visual">
+    <div class="about-polaroid" style="left:61px;top:50px"><img src="assets/henrik.png" alt="Henrik"></div>
+  </div>
+  <div>
+    <h2>Henrik</h2>
+    <div class="role">Video Editor &amp; Storyteller</div>
+    <div class="bio">
+      <p>I’ve had the opportunity to work with creators, entrepreneurs, and online businesses to help them turn their ideas into content that actually connects with an audience.</p>
+      <p>Because creating great content isn’t just about getting views. It’s about getting your message across, building trust, and turning viewers into customers.</p>
+      <p>That’s where I come in.</p>
+      <p>I help creators and businesses turn their raw footage <span class="olive">into videos that hold attention and drive action.</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="section-head"><h2>FAQ</h2><p>The questions creators ask before we start.</p></div>
+  <div class="faq-list">
+    <details open><summary>How much does a video cost?<span class="plus">+</span></summary><p>It depends on length and how much motion graphics work the edit needs. Most long-form videos land in a fixed per-video rate we agree before I start, so there are no surprises. Monthly retainers for weekly uploads get a lower rate.</p></details>
+    <details><summary>How long does an edit take?<span class="plus">+</span></summary><p>Seven days from footage to final cut, including revisions. Shorts and clips usually go out within 48 hours.</p></details>
+    <details><summary>How many revisions do I get?<span class="plus">+</span></summary><p>Two rounds are included. In practice most videos are approved on the first cut because the story angle is agreed before I open the timeline.</p></details>
+    <details><summary>What do you need from me?<span class="plus">+</span></summary><p>Raw footage, your brand assets if you have them, and a sentence on who the video is for. I handle the rest, including music licensing and captions.</p></details>
+    <details><summary>Why you over a cheaper editor?<span class="plus">+</span></summary><p>I edit for the outcome, not the runtime. Channels I've worked on reach a combined audience of over 3 million, and the edits are built around retention and conversion rather than effects for their own sake.</p></details>
+    <details><summary>How do we start?<span class="plus">+</span></summary><p>Send a message with a link to your channel. I reply within 24 hours with a short plan and a quote for the first video.</p></details>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <h2>Let’s make you <em class="accent">the main character.<br><br></em></h2>
+  <div class="cta-row"><a class="btn btn-primary" href="https://wa.me/46760269792" target="_blank" rel="noopener">Message me on WhatsApp ↗</a></div>
+  <p class="sub" style="font-size:14px">REPLIES WITHIN A DAY - 7 DAY TURNAROUND</p>
+  <footer><span>© 2026 Henrik</span><span><a href="https://x.com/home" target="_blank" rel="noopener">X</a> · <a href="https://www.instagram.com/henrikgranqvist/" target="_blank" rel="noopener">Instagram</a> · <a href="mailto:Henk-Visuals@gmail.com">Email</a></span></footer>
+</section>
+
+<script src="counts.js" defer></script>
+<script src="player.js" defer></script>
+<script src="carousel.js" defer></script>
+</body>
+</html>
