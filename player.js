@@ -33,7 +33,7 @@ if (matchMedia("(hover: hover)").matches) {
       if (!a.matches(":hover")) return;
       const f = document.createElement("iframe");
       f.className = "preview";
-      f.src = `https://www.youtube-nocookie.com/embed/${a.dataset.video}?autoplay=1&mute=1&controls=0&rel=0&playsinline=1&modestbranding=1&start=0`;
+      f.src = `https://www.youtube-nocookie.com/embed/${a.dataset.video}?autoplay=1&controls=0&rel=0&playsinline=1&modestbranding=1&start=0`;
       f.allow = "autoplay; encrypted-media";
       f.tabIndex = -1;
       a.appendChild(f);
