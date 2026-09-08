@@ -24,8 +24,21 @@ document.querySelectorAll(".marquee").forEach(track => {
   track.addEventListener("scroll", () => { // manual scroll: re-sync and keep the loop seamless
     if (Math.abs(track.scrollLeft - pos) > 1) { pos = wrap(track.scrollLeft); if (Math.abs(track.scrollLeft - pos) > 1) track.scrollLeft = pos; }
   });
-  track.addEventListener("pointerdown", e => { if (e.pointerType !== "mouse") return; dragging = true; moved = false; startX = e.clientX; startLeft = track.scrollLeft; track.setPointerCapture(e.pointerId); });
-  track.addEventListener("pointermove", e => { if (!dragging) return; const dx = e.clientX - startX; if (Math.abs(dx) > 4) { track.classList.add("dragging"); moved = true; } track.scrollLeft = startLeft - dx; });
+  track.addEventListener("pointerdown", e => { if (e.pointerType !== "mouse") return; dragging = true; moved = false; startX = e.clientX; startLeft = track.scrollLeft; });
+  track.addEventListener("pointermove", e => {
+    if (!dragging) return;
+    const dx = e.clientX - startX;
+    // Ignore tiny jitter entirely: don't touch scrollLeft until real drag distance
+    // is confirmed. Even a 1px scroll change during a click makes some browsers
+    // cancel the click event, which is why cards only opened on "lucky" clicks.
+    if (!moved) {
+      if (Math.abs(dx) <= 4) return;
+      moved = true;
+      track.classList.add("dragging");
+      track.setPointerCapture(e.pointerId); // only capture once it's a real drag
+    }
+    track.scrollLeft = startLeft - dx;
+  });
   const end = () => {
     dragging = false;
     setTimeout(() => track.classList.remove("dragging"), 0);
