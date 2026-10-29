@@ -10,6 +10,16 @@ Repo: H-Visuals/H-Visuals.github.io (public, `main` branch, GitHub Pages auto-pu
 - `player.js` — click-to-open video lightbox (Work + Testimonials sections)
 - `carousel.js` — auto-scrolling/drag "marquee" rails in the Work section
 
+## Images
+- The page loads `.webp` files from `assets/`. The `.png` files next to them are
+  the full-size originals and are not loaded by the site.
+- `assets/bg.webp` / `bg-1200.webp` = `frame.png` with the film grain baked in.
+  If you replace `frame.png`, regenerate these (don't point the page back at the
+  5 MB PNG).
+- Don't put animated SVG filters (`feTurbulence`, `feDisplacementMap`) or
+  full-screen `mix-blend-mode` layers back on the page — they re-render every
+  frame and made the site crawl in Safari/Chrome. Animate `transform`/`opacity` only.
+
 ## Making a change
 1. Clone or edit the repo directly (no local machine required — it's a plain
    static site, clonable from any environment with git + a push-capable token).

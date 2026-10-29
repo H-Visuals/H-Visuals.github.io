@@ -20,41 +20,17 @@
 <meta name="twitter:image" content="https://h-visuals.github.io/assets/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://img.youtube.com">
+<link rel="preload" as="image" href="assets/bg.webp" imagesrcset="assets/bg-1200.webp 1200w, assets/bg.webp 2400w" imagesizes="100vw" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=6">
+<link rel="stylesheet" href="style.css?v=7">
 </head>
 <body>
-<!-- Living background: everything outside the cream medallion sways very slightly; the medallion itself is a static copy on top. -->
-<svg class="bg" viewBox="0 0 2400 1340" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
-  <defs>
-    <filter id="sway" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
-      <!-- two noise fields at different scales/seeds; finer noise gives each vine, leaf and icon its own direction -->
-      <feTurbulence type="fractalNoise" baseFrequency="0.009 0.011" numOctaves="2" seed="7" result="n1">
-        <animate attributeName="baseFrequency" dur="37s" repeatCount="indefinite"
-          values="0.009 0.011;0.0104 0.0098;0.0094 0.0118;0.0084 0.0106;0.009 0.011"
-          calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
-      </feTurbulence>
-      <feTurbulence type="fractalNoise" baseFrequency="0.0055 0.0045" numOctaves="2" seed="23" result="n2">
-        <animate attributeName="baseFrequency" dur="53s" repeatCount="indefinite"
-          values="0.0055 0.0045;0.0048 0.0056;0.006 0.005;0.0052 0.0041;0.0055 0.0045"
-          calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
-      </feTurbulence>
-      <feComposite in="n1" in2="n2" operator="arithmetic" k2="0.5" k3="0.5" result="noise"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" xChannelSelector="R" yChannelSelector="G" scale="18">
-        <animate attributeName="scale" dur="20s" repeatCount="indefinite" values="13;24;16;21;13" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
-      </feDisplacementMap>
-    </filter>
-    <clipPath id="medallion"><circle cx="1216" cy="670" r="560"/></clipPath>
-    <filter id="grain" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
-      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="2" stitchTiles="stitch"/>
-      <feColorMatrix type="saturate" values="0"/>
-      <feComponentTransfer><feFuncA type="linear" slope="1"/></feComponentTransfer>
-    </filter>
-  </defs>
-  <image href="assets/frame.png" width="2400" height="1340" filter="url(#sway)"/>
-  <image href="assets/frame.png" width="2400" height="1340" clip-path="url(#medallion)"/>
-  <rect class="bg-grain" x="0" y="0" width="2400" height="1340" filter="url(#grain)"/>
-</svg>
+<!-- Living background: the artwork outside the cream medallion drifts very slightly (GPU transform only); the medallion itself is a static copy on top. Film grain is baked into bg.webp. -->
+<div class="bg" aria-hidden="true">
+  <img class="bg-sway" src="assets/bg.webp" srcset="assets/bg-1200.webp 1200w, assets/bg.webp 2400w" sizes="100vw" alt="" fetchpriority="high">
+  <img class="bg-medallion" src="assets/bg.webp" srcset="assets/bg-1200.webp 1200w, assets/bg.webp 2400w" sizes="100vw" alt="" fetchpriority="high">
+</div>
 
 <nav class="nav" aria-label="Main">
   <ul>
@@ -88,12 +64,12 @@
 <section class="creators" aria-labelledby="creators-h">
   <div class="section-head"><h2 id="creators-h">Creators I've <em class="accent">worked with</em></h2></div>
   <div class="polaroids">
-    <div class="polaroid"><a href="https://www.youtube.com/@Hamza97" target="_blank" rel="noopener"><img src="assets/hamza.png" alt="Hamza Ahmed"><b>Hamza Ahmed</b><small data-count="hamza">2.2M subscribers</small></a><span class="links"><a href="https://www.youtube.com/@Hamza97" target="_blank" rel="noopener">YouTube</a><a href="https://www.instagram.com/cultleaderhamza/" target="_blank" rel="noopener">Instagram</a></span></div>
-    <div class="polaroid"><a href="https://www.youtube.com/@mewingbymikemew" target="_blank" rel="noopener"><img src="assets/mike-mew.png" alt="Dr. Mike Mew"><b>Dr. Mike Mew</b><small data-count="mike-mew">660K subscribers</small></a><span class="links"><a href="https://www.youtube.com/@mewingbymikemew" target="_blank" rel="noopener">YouTube</a><a href="https://www.instagram.com/mewingbymikemew/" target="_blank" rel="noopener">Instagram</a></span></div>
-    <div class="polaroid"><a href="https://www.youtube.com/@realsolbrah" target="_blank" rel="noopener"><img src="assets/sol-brah.png" alt="Sol Brah"><b>Sol Brah</b><small data-count="sol-brah">300K followers</small></a><span class="links"><a href="https://www.youtube.com/@realsolbrah" target="_blank" rel="noopener">YouTube</a><a href="https://www.instagram.com/solbrah/" target="_blank" rel="noopener">Instagram</a></span></div>
-    <div class="polaroid"><a href="https://www.youtube.com/@JackhopkinsCEO" target="_blank" rel="noopener"><img src="assets/jack-hopkins.png" alt="Jack Hopkins"><b>Jack Hopkins</b><small data-count="jack-hopkins">220K subscribers</small></a><span class="links"><a href="https://www.youtube.com/@JackhopkinsCEO" target="_blank" rel="noopener">YouTube</a><a href="https://www.instagram.com/itsjackhopkins/" target="_blank" rel="noopener">Instagram</a></span></div>
-    <div class="polaroid"><a href="https://www.youtube.com/TheHarbonator" target="_blank" rel="noopener"><img src="assets/sam-harborne.png" alt="Sam Harborne"><b>Sam Harborne</b><small data-count="sam-harborne">23K subscribers</small></a><span class="links"><a href="https://www.youtube.com/TheHarbonator" target="_blank" rel="noopener">YouTube</a><a href="https://www.instagram.com/harbonator/" target="_blank" rel="noopener">Instagram</a></span></div>
-    <div class="polaroid"><a href="https://www.youtube.com/@Salsanchez_" target="_blank" rel="noopener"><img src="assets/sal-sanchez.png" alt="Sal Sanchez"><b>Sal Sanchez</b><small data-count="sal-sanchez">14K subscribers</small></a><span class="links"><a href="https://www.youtube.com/@Salsanchez_" target="_blank" rel="noopener">YouTube</a><a href="https://www.instagram.com/iamsalfx/" target="_blank" rel="noopener">Instagram</a></span></div>
+    <div class="polaroid"><a href="https://www.youtube.com/@Hamza97" target="_blank" rel="noopener"><img src="assets/hamza.webp" loading="lazy" decoding="async" alt="Hamza Ahmed"><b>Hamza Ahmed</b><small data-count="hamza">2.2M subscribers</small></a><span class="links"><a href="https://www.youtube.com/@Hamza97" target="_blank" rel="noopener">YouTube</a><a href="https://www.instagram.com/cultleaderhamza/" target="_blank" rel="noopener">Instagram</a></span></div>
+    <div class="polaroid"><a href="https://www.youtube.com/@mewingbymikemew" target="_blank" rel="noopener"><img src="assets/mike-mew.webp" loading="lazy" decoding="async" alt="Dr. Mike Mew"><b>Dr. Mike Mew</b><small data-count="mike-mew">660K subscribers</small></a><span class="links"><a href="https://www.youtube.com/@mewingbymikemew" target="_blank" rel="noopener">YouTube</a><a href="https://www.instagram.com/mewingbymikemew/" target="_blank" rel="noopener">Instagram</a></span></div>
+    <div class="polaroid"><a href="https://www.youtube.com/@realsolbrah" target="_blank" rel="noopener"><img src="assets/sol-brah.webp" loading="lazy" decoding="async" alt="Sol Brah"><b>Sol Brah</b><small data-count="sol-brah">300K followers</small></a><span class="links"><a href="https://www.youtube.com/@realsolbrah" target="_blank" rel="noopener">YouTube</a><a href="https://www.instagram.com/solbrah/" target="_blank" rel="noopener">Instagram</a></span></div>
+    <div class="polaroid"><a href="https://www.youtube.com/@JackhopkinsCEO" target="_blank" rel="noopener"><img src="assets/jack-hopkins.webp" loading="lazy" decoding="async" alt="Jack Hopkins"><b>Jack Hopkins</b><small data-count="jack-hopkins">220K subscribers</small></a><span class="links"><a href="https://www.youtube.com/@JackhopkinsCEO" target="_blank" rel="noopener">YouTube</a><a href="https://www.instagram.com/itsjackhopkins/" target="_blank" rel="noopener">Instagram</a></span></div>
+    <div class="polaroid"><a href="https://www.youtube.com/TheHarbonator" target="_blank" rel="noopener"><img src="assets/sam-harborne.webp" loading="lazy" decoding="async" alt="Sam Harborne"><b>Sam Harborne</b><small data-count="sam-harborne">23K subscribers</small></a><span class="links"><a href="https://www.youtube.com/TheHarbonator" target="_blank" rel="noopener">YouTube</a><a href="https://www.instagram.com/harbonator/" target="_blank" rel="noopener">Instagram</a></span></div>
+    <div class="polaroid"><a href="https://www.youtube.com/@Salsanchez_" target="_blank" rel="noopener"><img src="assets/sal-sanchez.webp" loading="lazy" decoding="async" alt="Sal Sanchez"><b>Sal Sanchez</b><small data-count="sal-sanchez">14K subscribers</small></a><span class="links"><a href="https://www.youtube.com/@Salsanchez_" target="_blank" rel="noopener">YouTube</a><a href="https://www.instagram.com/iamsalfx/" target="_blank" rel="noopener">Instagram</a></span></div>
   </div>
 </section>
 
@@ -143,14 +119,14 @@
 <section class="reviews" id="reviews">
   <div class="section-head"><h2>Hear directly <em class="accent">from my clients</em></h2></div>
   <div class="video-reviews">
-    <div class="vreview"><a class="clip" data-video="Q1KXRIxHq0s" href="https://www.youtube.com/watch?v=Q1KXRIxHq0s" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/Q1KXRIxHq0s/hqdefault.jpg" alt="" loading="lazy"><span class="play">▶</span></a><div class="who"><img class="avatar" src="assets/hamza.png" alt=""><div><b>Hamza Ahmed</b><small data-count="hamza">2.2M subscribers</small></div><span class="stars">★★★★★</span></div><p class="vquote">“This is fucking sick man!”</p></div>
-    <div class="vreview"><a class="clip" data-video="I0_Hkz_zO_E" href="https://www.youtube.com/watch?v=I0_Hkz_zO_E" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/I0_Hkz_zO_E/hqdefault.jpg" alt="" loading="lazy"><span class="play">▶</span></a><div class="who"><img class="avatar" src="assets/hamza.png" alt=""><div><b>Hamza Ahmed</b><small data-count="hamza">2.2M subscribers</small></div><span class="stars">★★★★★</span></div><p class="vquote">“This is a masterpiece”</p></div>
-    <div class="vreview"><a class="clip" data-video="HWMuilW5DQc" href="https://www.youtube.com/watch?v=HWMuilW5DQc" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/HWMuilW5DQc/hqdefault.jpg" alt="" loading="lazy"><span class="play">▶</span></a><div class="who"><img class="avatar" src="assets/sam-harborne.png" alt=""><div><b>Sam Harborne</b><small data-count="sam-harborne">23K subscribers</small></div><span class="stars">★★★★★</span></div><p class="vquote">“Henrik is the best Video Editor I’ve ever worked with”</p></div>
-    <div class="vreview"><a class="clip" data-video="GtIaL5L8z8I" href="https://www.youtube.com/shorts/GtIaL5L8z8I" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/GtIaL5L8z8I/hqdefault.jpg" alt="" loading="lazy"><span class="play">▶</span></a><div class="who"><img class="avatar" src="assets/denmo.png" alt=""><div><b>Denmo</b></div><span class="stars">★★★★★</span></div><p class="vquote">“Absolute killer Video Editor”</p></div>
+    <div class="vreview"><a class="clip" data-video="Q1KXRIxHq0s" href="https://www.youtube.com/watch?v=Q1KXRIxHq0s" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/Q1KXRIxHq0s/hqdefault.jpg" alt="" loading="lazy"><span class="play">▶</span></a><div class="who"><img class="avatar" src="assets/hamza.webp" loading="lazy" decoding="async" alt=""><div><b>Hamza Ahmed</b><small data-count="hamza">2.2M subscribers</small></div><span class="stars">★★★★★</span></div><p class="vquote">“This is fucking sick man!”</p></div>
+    <div class="vreview"><a class="clip" data-video="I0_Hkz_zO_E" href="https://www.youtube.com/watch?v=I0_Hkz_zO_E" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/I0_Hkz_zO_E/hqdefault.jpg" alt="" loading="lazy"><span class="play">▶</span></a><div class="who"><img class="avatar" src="assets/hamza.webp" loading="lazy" decoding="async" alt=""><div><b>Hamza Ahmed</b><small data-count="hamza">2.2M subscribers</small></div><span class="stars">★★★★★</span></div><p class="vquote">“This is a masterpiece”</p></div>
+    <div class="vreview"><a class="clip" data-video="HWMuilW5DQc" href="https://www.youtube.com/watch?v=HWMuilW5DQc" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/HWMuilW5DQc/hqdefault.jpg" alt="" loading="lazy"><span class="play">▶</span></a><div class="who"><img class="avatar" src="assets/sam-harborne.webp" loading="lazy" decoding="async" alt=""><div><b>Sam Harborne</b><small data-count="sam-harborne">23K subscribers</small></div><span class="stars">★★★★★</span></div><p class="vquote">“Henrik is the best Video Editor I’ve ever worked with”</p></div>
+    <div class="vreview"><a class="clip" data-video="GtIaL5L8z8I" href="https://www.youtube.com/shorts/GtIaL5L8z8I" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/GtIaL5L8z8I/hqdefault.jpg" alt="" loading="lazy"><span class="play">▶</span></a><div class="who"><img class="avatar" src="assets/denmo.webp" loading="lazy" decoding="async" alt=""><div><b>Denmo</b></div><span class="stars">★★★★★</span></div><p class="vquote">“Absolute killer Video Editor”</p></div>
   </div>
   <div class="quotes">
-    <blockquote class="quote"><span class="stars">★★★★★</span><p>“Thanks for the great work mate, spot on first episode, really impressed.”</p><div class="who"><img class="avatar" src="assets/jack-hopkins.png" alt=""><div><b>Jack Hopkins</b><small data-count="jack-hopkins">220K subscribers</small></div></div><span class="stamp">approved</span></blockquote>
-    <blockquote class="quote"><span class="stars">★★★★★</span><p>“Legend bro. This is high quality stuff. Super keen to work together once I get you even better footage.”</p><div class="who"><img class="avatar" src="assets/sol-brah.png" alt=""><div><b>Sol Brah</b><small data-count="sol-brah">300K followers</small></div></div><span class="stamp">approved</span></blockquote>
+    <blockquote class="quote"><span class="stars">★★★★★</span><p>“Thanks for the great work mate, spot on first episode, really impressed.”</p><div class="who"><img class="avatar" src="assets/jack-hopkins.webp" loading="lazy" decoding="async" alt=""><div><b>Jack Hopkins</b><small data-count="jack-hopkins">220K subscribers</small></div></div><span class="stamp">approved</span></blockquote>
+    <blockquote class="quote"><span class="stars">★★★★★</span><p>“Legend bro. This is high quality stuff. Super keen to work together once I get you even better footage.”</p><div class="who"><img class="avatar" src="assets/sol-brah.webp" loading="lazy" decoding="async" alt=""><div><b>Sol Brah</b><small data-count="sol-brah">300K followers</small></div></div><span class="stamp">approved</span></blockquote>
   </div>
 </section>
 
@@ -166,7 +142,7 @@
 
 <section class="about" id="about">
   <div class="about-visual">
-    <div class="about-polaroid"><img src="assets/henrik.png" alt="Henrik"></div>
+    <div class="about-polaroid"><img src="assets/henrik.webp" loading="lazy" decoding="async" alt="Henrik"></div>
   </div>
   <div>
     <h2>Henrik</h2>
@@ -201,6 +177,6 @@
 
 <script src="counts.js?v=5" defer></script>
 <script src="player.js?v=3" defer></script>
-<script src="carousel.js?v=4" defer></script>
+<script src="carousel.js?v=5" defer></script>
 </body>
 </html>

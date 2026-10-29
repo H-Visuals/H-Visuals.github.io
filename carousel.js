@@ -2,20 +2,27 @@
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 document.querySelectorAll(".marquee").forEach(track => {
   const dir = Number(track.dataset.dir || 1);
-  const speed = 0.5; // px per frame
+  const speed = 30; // px per second (time-based, so 120Hz screens don't run double speed)
+  let visible = false, running = false, last = 0;
   let paused = false, idle = 0, dragging = false, startX = 0, startLeft = 0, moved = false;
   const half = () => track.scrollWidth / 2;
   // keep scroll position inside (1, half-1) so the loop never sits on a boundary
   const wrap = x => { const h = half(); if (h <= 0) return x; while (x >= h - 1) x -= h; while (x < 1) x += h; return x; };
   let pos = dir < 0 ? half() - 2 : 1;
   track.scrollLeft = pos;
-  function loop() {
-    if (!paused && !dragging && !reduce) {
-      pos = wrap(pos + speed * dir);
+  // Only animate while the rail is on screen and the tab is visible; otherwise the loop sleeps.
+  function loop(t) {
+    if (!visible || document.hidden || reduce) { running = false; return; }
+    const dt = last ? Math.min(t - last, 50) : 16; last = t;
+    if (!paused && !dragging) {
+      pos = wrap(pos + speed * dir * dt / 1000);
       track.scrollLeft = pos;
     } else if (paused && !dragging && Date.now() > idle) paused = false;
     requestAnimationFrame(loop);
   }
+  function start() { if (running || !visible || document.hidden || reduce) return; running = true; last = 0; requestAnimationFrame(loop); }
+  new IntersectionObserver(([e]) => { visible = e.isIntersecting; start(); }).observe(track);
+  document.addEventListener("visibilitychange", start);
   const rest = ms => { paused = true; idle = Date.now() + ms; };
   track.addEventListener("mouseenter", () => rest(1e9));
   track.addEventListener("mouseleave", () => { paused = false; });
@@ -51,5 +58,4 @@ document.querySelectorAll(".marquee").forEach(track => {
     rest(2500);
   };
   track.addEventListener("pointerup", end); track.addEventListener("pointercancel", end);
-  requestAnimationFrame(loop);
 });
