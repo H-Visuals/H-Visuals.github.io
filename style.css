@@ -86,7 +86,10 @@ section{padding:clamp(64px,8vw,100px) var(--gutter)}
 .polaroid .links a{text-decoration:none;color:var(--olive);border-bottom:1px solid currentColor;line-height:1.4}
 .polaroid .links a:hover{color:var(--orange)}
 .polaroid:nth-child(1){transform:rotate(-3deg)}.polaroid:nth-child(2){transform:rotate(2deg);margin-top:16px}.polaroid:nth-child(3){transform:rotate(-1deg)}.polaroid:nth-child(4){transform:rotate(3deg);margin-top:12px}.polaroid:nth-child(5){transform:rotate(-2deg)}.polaroid:nth-child(6){transform:rotate(1.5deg);margin-top:18px}
+.polaroid:nth-child(7){transform:rotate(-2.5deg);margin-top:8px}
 .polaroid:hover{transform:rotate(0) scale(1.04);z-index:2;color:var(--charcoal)}
+@media (min-width:1000px){.polaroids{gap:14px;flex-wrap:nowrap}.polaroid{width:clamp(128px,calc((100% - 84px)/7),168px);flex:0 0 auto}}
+@media (min-width:1000px) and (max-width:1299px){.polaroid{padding:8px 8px 12px}.polaroid b{font-size:13px}.polaroid .links{gap:6px;font-size:8.5px;letter-spacing:.05em}}
 
 /* work */
 .work{padding-left:0;padding-right:0;overflow:hidden}
