@@ -7,7 +7,8 @@
   --grain-opacity:.14;
   --grain-size:200px; /* smaller = finer grain */
   /* background artwork */
-  --bg-brightness:.7; /* 0 = black, 1 = full artwork */
+  --bg-brightness:.5; /* medallion: 0 = black, 1 = full artwork */
+  --bg-brightness-outer:.24; /* artwork around the medallion */
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -20,7 +21,7 @@ body{margin:0;background:var(--charcoal);color:var(--ink);font-family:var(--sans
 .bg{--mx:50%;--mr:max(14.641vw,43.923vh)}
 .bg-sway{transform-origin:var(--mx) 50%;transform:scale(1.02);will-change:transform;animation:sway 26s ease-in-out infinite alternate}
 .bg-medallion{clip-path:circle(var(--mr) at var(--mx) 50%)}
-.bg::after{content:"";position:absolute;inset:0;background:#000;opacity:calc(1 - var(--bg-brightness))}
+.bg::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx) 50%,rgba(0,0,0,calc(1 - var(--bg-brightness))) calc(var(--mr) * .92),rgba(0,0,0,calc(1 - var(--bg-brightness-outer))) calc(var(--mr) * 1.25))}
 @keyframes sway{
   0%{transform:scale(1.02) rotate(0deg)}
   30%{transform:scale(1.032) rotate(.35deg) translate(.15%,-.1%)}

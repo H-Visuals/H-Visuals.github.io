@@ -13,7 +13,7 @@ Repo: H-Visuals/H-Visuals.github.io (public, `main` branch, GitHub Pages auto-pu
 ## Images
 - The page loads `.webp` files from `assets/`. The `.png` files next to them are
   the full-size originals and are not loaded by the site.
-- `assets/bg.webp` / `bg-1200.webp` = `frame.png` (2172x724 ultrawide, medallion at
+- `assets/bg-v2.webp` / `bg-v2-1200.webp` (rename to -v3 etc. when the artwork changes, so browsers drop the cached copy) = `frame.png` (2172x724 ultrawide, medallion at
   (1086,360) r≈318) with the film grain baked in. If the artwork changes size, update
   `--mx`/`--mr` on `.bg` in style.css so the static medallion copy lines up.
   If you replace `frame.png`, regenerate these (don't point the page back at the
