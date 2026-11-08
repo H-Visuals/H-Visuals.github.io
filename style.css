@@ -46,7 +46,7 @@ section{padding:clamp(64px,8vw,100px) var(--gutter)}
 .nav a:hover,.nav a.is-active{color:var(--charcoal);background:var(--sage)}
 
 /* hero */
-.hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(200,61,18,.35),transparent 70%)}
+.hero{min-height:100svh;padding:88px var(--gutter);box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(200,61,18,.35),transparent 70%)}
 .hero::before{content:none}
 .hero-inner{position:relative;display:flex;flex-direction:column;align-items:center;gap:28px;max-width:1050px}
 .hero h1{font-size:clamp(40px,7vw,84px);line-height:.98;letter-spacing:-.035em}
