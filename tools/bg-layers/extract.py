@@ -36,6 +36,9 @@ SCISSORS = dict(box=(1340, 586, 1502, 712), piv=(1416, 652))
 DIAMOND = dict(box=(1530, 40, 1592, 120), c=(1561, 80))
 MED_C = (1086, 360)
 
+_yy, _xx = np.mgrid[0:H, 0:W]
+RING_ZONE = (_xx - MED_C[0]) ** 2 + (_yy - MED_C[1]) ** 2 <= 374 ** 2  # medallion + red ring: never part of a moving cut-out
+
 def obj_mask(box, thr=42, fill=True):
     x0, y0, x1, y1 = box
     m = np.zeros((H, W), bool)
@@ -49,7 +52,7 @@ def obj_mask(box, thr=42, fill=True):
         keep = np.isin(lab, [i + 1 for i, s in enumerate(sizes) if s > 120])
         sub = keep
     m[y0:y1, x0:x1] = sub
-    return m
+    return m & ~RING_ZONE
 
 def dil(m, r):
     k = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * r + 1, 2 * r + 1))

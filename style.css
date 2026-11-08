@@ -26,8 +26,8 @@ body{margin:0;background:var(--charcoal);color:var(--ink);font-family:var(--sans
 .ly img{display:block;width:100%;height:100%}
 .bg::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx) 50%,rgba(0,0,0,calc(1 - var(--bg-brightness))) calc(var(--mr) * .92),rgba(0,0,0,calc(1 - var(--bg-brightness-outer))) calc(var(--mr) * 1.25))}
 /* medallion: slow zoom in/out only (never below 1x, so nothing behind it is revealed) */
-.ly-med{animation:med-pulse 14s ease-in-out infinite alternate}
-@keyframes med-pulse{from{transform:scale(1)}to{transform:scale(1.025)}}
+.ly-med{animation:med-pulse 11s ease-in-out infinite alternate}
+@keyframes med-pulse{from{transform:scale(1)}to{transform:scale(1.035)}}
 /* everything around it: slow, out-of-sync hovering like leaves on a branch (each layer has its own --dx/--dy/--r, duration, delay) */
 .drift{animation:drift 16s ease-in-out infinite}
 @keyframes drift{
@@ -35,13 +35,13 @@ body{margin:0;background:var(--charcoal);color:var(--ink);font-family:var(--sans
   33%{transform:translate(calc(var(--u) * var(--dx)),calc(var(--u) * var(--dy) * -.6)) rotate(calc(var(--r) * 1deg))}
   66%{transform:translate(calc(var(--u) * var(--dx) * -.5),calc(var(--u) * var(--dy))) rotate(calc(var(--r) * -.7deg))}
 }
-.ly-reel{animation:spin 90s linear infinite}
+.ly-reel{animation:spin 65s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.ly-blade-a{animation:blade-a 7s ease-in-out infinite alternate}
-.ly-blade-b{animation:blade-b 7s ease-in-out infinite alternate}
-@keyframes blade-a{from{transform:rotate(0deg)}to{transform:rotate(-5deg)}}
-@keyframes blade-b{from{transform:rotate(0deg)}to{transform:rotate(5deg)}}
-.ly-diamond{animation:diamond 6s ease-in-out infinite alternate}
+.ly-blade-a{animation:blade-a 5.5s ease-in-out infinite alternate}
+.ly-blade-b{animation:blade-b 5.5s ease-in-out infinite alternate}
+@keyframes blade-a{from{transform:rotate(0deg)}to{transform:rotate(-6deg)}}
+@keyframes blade-b{from{transform:rotate(0deg)}to{transform:rotate(6deg)}}
+.ly-diamond{animation:diamond 4.5s ease-in-out infinite alternate}
 @keyframes diamond{from{transform:scale(1) rotate(0deg)}to{transform:scale(1.14) rotate(8deg)}}
 @media (prefers-reduced-motion:reduce){.ly,.ly-med,.drift{animation:none!important}}
 
