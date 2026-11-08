@@ -58,13 +58,14 @@ CSS = """.bg{position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;ove
 .bg::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx) 50%,rgba(0,0,0,calc(1 - var(--bg-brightness))) calc(var(--mr) * .92),rgba(0,0,0,calc(1 - var(--bg-brightness-outer))) calc(var(--mr) * 1.25))}
 /* medallion: slow zoom in/out only (never below 1x, so nothing behind it is revealed) */
 .ly-med{animation:med-pulse 11s ease-in-out infinite alternate}
-@keyframes med-pulse{from{transform:scale(1)}to{transform:scale(1.035)}}
+@keyframes med-pulse{from{transform:scale(1)}to{transform:scale(1.012)}}
 /* everything around it: slow, out-of-sync hovering like leaves on a branch (each layer has its own --dx/--dy/--r, duration, delay) */
 .drift{animation:drift 16s ease-in-out infinite}
+/* rotate only, around each layer's attachment point (transform-origin = where it meets its stem/body in the base art), so joints never separate */
 @keyframes drift{
-  0%,100%{transform:translate(0,0) rotate(0deg)}
-  33%{transform:translate(calc(var(--u) * var(--dx)),calc(var(--u) * var(--dy) * -.6)) rotate(calc(var(--r) * 1deg))}
-  66%{transform:translate(calc(var(--u) * var(--dx) * -.5),calc(var(--u) * var(--dy))) rotate(calc(var(--r) * -.7deg))}
+  0%,100%{transform:rotate(0deg)}
+  33%{transform:rotate(calc(var(--r) * 1deg))}
+  66%{transform:rotate(calc(var(--r) * -.7deg))}
 }
 .ly-reel{animation:spin 65s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
