@@ -13,11 +13,13 @@ Repo: H-Visuals/H-Visuals.github.io (public, `main` branch, GitHub Pages auto-pu
 ## Images
 - The page loads `.webp` files from `assets/`. The `.png` files next to them are
   the full-size originals and are not loaded by the site.
-- `assets/bg-v3.webp` / `bg-v3-1200.webp` (rename to -v4 etc. when the artwork changes, so browsers drop the cached copy) = `frame.png` (2172x724 ultrawide, medallion at
-  (1086,360) r≈318) as-is, no baked grain; shown as ONE layer (`.bg-art`) that slowly breathes/rocks via the `breathe` keyframes; never split it into an art layer + medallion copy again — two layers showed a double ring. Zoom = `--bgh` on `.bg`. If the artwork changes size, update
-  `--mx`/`--mr` on `.bg` in style.css so the static medallion copy lines up.
-  If you replace `frame.png`, regenerate these (don't point the page back at the
-  5 MB PNG).
+- Background = `assets/frame.png` (2172x724) split into layers in `assets/bg-layers/`:
+  `base.webp` (artwork with every moving part inpainted out) + cut-outs (medallion, icons, leaves,
+  snake heads, reel, two scissor blades, keyframe diamond). Each layer floats on its own timing; the
+  medallion only scales UP (never below 1x) so nothing behind it is exposed.
+  Regenerate with `python3 tools/bg-layers/extract.py && python3 tools/bg-layers/build.py`
+  (paths at the top of each script; bump `V` in build.py so browsers fetch the new files).
+  Motion amounts/speeds live in the `P` table in build.py and the keyframes it writes into style.css.
 - Don't put animated SVG filters (`feTurbulence`, `feDisplacementMap`) or
   full-screen `mix-blend-mode` layers back on the page — they re-render every
   frame and made the site crawl in Safari/Chrome. Animate `transform`/`opacity` only.

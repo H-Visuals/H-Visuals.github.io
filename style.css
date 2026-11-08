@@ -13,23 +13,38 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--charcoal);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-/* Background artwork: one static image, sized smaller than the viewport height with faded top/bottom edges. */
-.bg{position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;overflow:hidden;pointer-events:none;background:var(--charcoal)}
-.bg{background:#000;--bgh:max(80vh,33.34vw); /* rendered artwork height; lower 80vh = more zoomed out */
-  --mx:50%;--mr:calc(var(--bgh) * .4392)} /* artwork 2172x724, medallion at (1086,360) r=318 */
-.bg img{position:absolute;left:50%;top:50%;height:var(--bgh);width:auto;max-width:none;transform:translate(-50%,-50%);display:block;
+/* Background artwork */
+.bg{position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;overflow:hidden;pointer-events:none;background:#000;
+  --bgh:max(80vh,33.34vw); /* rendered artwork height; lower 80vh = more zoomed out */
+  --u:calc(var(--bgh) / 724); /* one source pixel of the 2172x724 artwork */
+  --mx:50%;--mr:calc(var(--bgh) * .4392)} /* medallion at (1086,360) r=318 */
+/* the artwork box: base image + animated cut-out layers, all positioned in % of the 2172x724 artwork */
+.bg-art{position:absolute;left:50%;top:50%;height:var(--bgh);width:calc(var(--bgh) * 3);transform:translate(-50%,-50%);
   -webkit-mask-image:linear-gradient(to bottom,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 9%,#000 91%,transparent)}
-.bg-art::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx) 50%,rgba(0,0,0,calc(1 - var(--bg-brightness))) calc(var(--mr) * .92),rgba(0,0,0,calc(1 - var(--bg-brightness-outer))) calc(var(--mr) * 1.25))}
-/* slow "breathing": artwork + its darkening move together as ONE layer, so the medallion ring never doubles */
-.bg-art{position:absolute;inset:0;transform-origin:50% 50%;will-change:transform;animation:breathe 22s ease-in-out infinite alternate}
-@keyframes breathe{
-  0%{transform:scale(1) rotate(0deg)}
-  25%{transform:scale(1.02) rotate(.5deg)}
-  50%{transform:scale(1.04) rotate(0deg)}
-  75%{transform:scale(1.02) rotate(-.5deg)}
-  100%{transform:scale(1) rotate(0deg)}
+.bg-base{position:absolute;inset:0;width:100%;height:100%;display:block}
+.ly{position:absolute;will-change:transform}
+.ly img{display:block;width:100%;height:100%}
+.bg::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx) 50%,rgba(0,0,0,calc(1 - var(--bg-brightness))) calc(var(--mr) * .92),rgba(0,0,0,calc(1 - var(--bg-brightness-outer))) calc(var(--mr) * 1.25))}
+/* medallion: slow zoom in/out only (never below 1x, so nothing behind it is revealed) */
+.ly-med{animation:med-pulse 14s ease-in-out infinite alternate}
+@keyframes med-pulse{from{transform:scale(1)}to{transform:scale(1.025)}}
+/* everything around it: slow, out-of-sync hovering like leaves on a branch (each layer has its own --dx/--dy/--r, duration, delay) */
+.drift{animation:drift 16s ease-in-out infinite}
+@keyframes drift{
+  0%,100%{transform:translate(0,0) rotate(0deg)}
+  33%{transform:translate(calc(var(--u) * var(--dx)),calc(var(--u) * var(--dy) * -.6)) rotate(calc(var(--r) * 1deg))}
+  66%{transform:translate(calc(var(--u) * var(--dx) * -.5),calc(var(--u) * var(--dy))) rotate(calc(var(--r) * -.7deg))}
 }
-@media (prefers-reduced-motion:reduce){.bg-art{animation:none}}
+.ly-reel{animation:spin 90s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ly-blade-a{animation:blade-a 7s ease-in-out infinite alternate}
+.ly-blade-b{animation:blade-b 7s ease-in-out infinite alternate}
+@keyframes blade-a{from{transform:rotate(0deg)}to{transform:rotate(-5deg)}}
+@keyframes blade-b{from{transform:rotate(0deg)}to{transform:rotate(5deg)}}
+.ly-diamond{animation:diamond 6s ease-in-out infinite alternate}
+@keyframes diamond{from{transform:scale(1) rotate(0deg)}to{transform:scale(1.14) rotate(8deg)}}
+@media (prefers-reduced-motion:reduce){.ly,.ly-med,.drift{animation:none!important}}
+
 body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:var(--grain-opacity);background:url("assets/grain.png") repeat;background-size:var(--grain-size) var(--grain-size)}
 a{color:inherit}a:hover{color:var(--orange)}
 h1,h2,h3{margin:0;letter-spacing:-.03em;font-weight:700;text-wrap:balance}
