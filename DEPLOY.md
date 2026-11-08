@@ -13,7 +13,9 @@ Repo: H-Visuals/H-Visuals.github.io (public, `main` branch, GitHub Pages auto-pu
 ## Images
 - The page loads `.webp` files from `assets/`. The `.png` files next to them are
   the full-size originals and are not loaded by the site.
-- `assets/bg.webp` / `bg-1200.webp` = `frame.png` with the film grain baked in.
+- `assets/bg.webp` / `bg-1200.webp` = `frame.png` (2172x724 ultrawide, medallion at
+  (1086,360) r≈318) with the film grain baked in. If the artwork changes size, update
+  `--mx`/`--mr` on `.bg` in style.css so the static medallion copy lines up.
   If you replace `frame.png`, regenerate these (don't point the page back at the
   5 MB PNG).
 - Don't put animated SVG filters (`feTurbulence`, `feDisplacementMap`) or
@@ -51,3 +53,10 @@ For a real visual check in a browser, hard-reload (cmd+shift+r), not a normal re
 - `counts.js` calls the YouTube Data API with a hardcoded key. It should be
   restricted (HTTP referrer: `h-visuals.github.io/*`) in Google Cloud
   Console if not already done.
+
+## Backups / rolling back
+- `pre-sage-2026-11-08` (tag) and `backup/pre-sage-2026-11-08` (branch) = the site
+  before the sage colours + ultrawide background (commit 255a2eb).
+- To restore that version on the live site:
+  `git checkout main && git revert --no-edit pre-sage-2026-11-08..HEAD && git push`
+  (or `git reset --hard pre-sage-2026-11-08 && git push --force` to drop the commits).

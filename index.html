@@ -21,15 +21,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://img.youtube.com">
-<link rel="preload" as="image" href="assets/bg.webp" imagesrcset="assets/bg-1200.webp 1200w, assets/bg.webp 2400w" imagesizes="100vw" fetchpriority="high">
+<link rel="preload" as="image" href="assets/bg.webp" imagesrcset="assets/bg-1200.webp 1200w, assets/bg.webp 2172w" imagesizes="(max-aspect-ratio: 3/1) 300vh, 100vw" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=8">
+<link rel="stylesheet" href="style.css?v=9">
 </head>
 <body>
 <!-- Living background: the artwork outside the cream medallion drifts very slightly (GPU transform only); the medallion itself is a static copy on top. Film grain is baked into bg.webp. -->
 <div class="bg" aria-hidden="true">
-  <img class="bg-sway" src="assets/bg.webp" srcset="assets/bg-1200.webp 1200w, assets/bg.webp 2400w" sizes="100vw" alt="" fetchpriority="high">
-  <img class="bg-medallion" src="assets/bg.webp" srcset="assets/bg-1200.webp 1200w, assets/bg.webp 2400w" sizes="100vw" alt="" fetchpriority="high">
+  <img class="bg-sway" src="assets/bg.webp" srcset="assets/bg-1200.webp 1200w, assets/bg.webp 2172w" sizes="(max-aspect-ratio: 3/1) 300vh, 100vw" alt="" fetchpriority="high">
+  <img class="bg-medallion" src="assets/bg.webp" srcset="assets/bg-1200.webp 1200w, assets/bg.webp 2172w" sizes="(max-aspect-ratio: 3/1) 300vh, 100vw" alt="" fetchpriority="high">
 </div>
 
 <nav class="nav" aria-label="Main">
@@ -178,6 +178,14 @@
   <footer><span>© 2026 Henrik</span><span><a href="https://x.com/home" target="_blank" rel="noopener">X</a> · <a href="https://www.instagram.com/henrikgranqvist/" target="_blank" rel="noopener">Instagram</a> · <a href="mailto:Henk-Visuals@gmail.com">Email</a></span></footer>
 </section>
 
+<script>
+/* nav: highlight the section in view (sage pill); "Work" while still above it */
+(function(){var links=[].slice.call(document.querySelectorAll('.nav a[href^="#"]'));if(!links.length)return;
+var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))});var t=0;
+function upd(){t=0;var y=window.innerHeight*.35,cur=0;secs.forEach(function(s,i){if(s&&s.getBoundingClientRect().top<=y)cur=i});
+links.forEach(function(a,i){a.classList.toggle('is-active',i===cur)})}
+window.addEventListener('scroll',function(){if(!t)t=requestAnimationFrame(upd)},{passive:true});upd()})();
+</script>
 <script src="counts.js?v=8" defer></script>
 <script src="player.js?v=3" defer></script>
 <script src="carousel.js?v=5" defer></script>
