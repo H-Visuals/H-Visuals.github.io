@@ -17,7 +17,7 @@ const CREATORS = [
   { id: "affedoom",     handle: "affedoomspelar" },
 ];
 
-const CACHE_KEY = "hv-sub-counts-v8";
+const CACHE_KEY = "hv-sub-counts-v9";
 
 /* YouTube video IDs (the part after v= or youtu.be/) of videos you edited — their view counts are summed into the hero stat. */
 const LONG_IDS = ["hHQrqHPP1YE","gzoa0yQmETI","JjggBNdb7Ag","YLt1gNHl1aM","vJhMwyXCnVw","w3PufUlrr78","qD3Swn1JmUQ","mJnVU7hWY0w","AcP1mZIZxd0","7GlzOORaUyU","0pS1r_VuiJg","6NKIxjNZg4M","rO6HqfqBY80","mE8sEEmcIjk","r3QCPV84SbM","Ol9RGLf5Q8k","V8t6F6kl5rc","4OmQvjjEkq4","S41d5dNGJR0","hwYZLtvDw8M","PRr-ndjY4Ls","m3w41stqJTE","XfN2CskikOE","0GfL_Zif8GE","cy1EHStTq-g","CvMlGvrn9OE","FBttmRL-VGo","LwsZs5BPy4E","YBSQsMNeiGs","vahu_7-Eh8M","suH5wN1dYKc","MZZ2LGhmVK4","JwM5VoXbeac","3xfFTQklq3w","j0F5QNeIu6o","-6BlKCS1_KM","VSMcBnahBTQ","jelDZ0DrhmY","shU_gV5Xq-Q","AcGAB2hgkiI","gnyKxVdYlFk","lYrP9E1vWg4","PYUuvirONjs","pQ39I32DXdY","DnoIggiRcU4","Wo4JNCMS5hw","Q_vnMGzV59g","VZGZdl-xJfU","SYcgC9JvitY","IGEVzyq68ao","FTNDsLuo8o0","vp9r9I-3ewU","7JSIQ-7fVlY","0BYU9jzjaDk","czcRZrVu6vE","GnLwhRDwVSE","VOtRcCatbxo","j3xlJ7vghxU","z8WlcYfoslk","sKwZmWTJU3c","6lMK8lPhwGo","Nw2BXnUlTMc","AjRB6SkBNj4","9RL86lQHitQ","5z4I1ohe7DQ","VBjHfJWukkU","yRqnobbsuBo","hyaJnsrUxMA","yHCAViq8Wq0","w_DGPLyMdWI","2i-vc52vcm0","VwEKO2XkKL8","K18IddYIPWE","UXOA669hoLk","nOI--Uh67H0","8yvEMvbxvfc","bReNqAlgp2w","t-fpKy6HR5Q","m-V3GlCpOvc","hLofOFus9sE","5j6sZwZ_YUw","5GI708osBKM","ps6LPEZbjPQ","m3pEsjburQU","Ja41xp5dBsM","ZcEGB0YRib4","PrRx4KSUOtA","-yztyjt59K4","a8fe8tSWgec","v0E-JQl3QXE","VBAkhWftpuo","1eC41f8uWpg","QXMDwdx5kfw","gEx3wix0jqQ","MMhUz4NlHrk","UfTH7vh6o2E","eoxK0Cs7sRI","o0k_FxHlBlQ","85_t-0iwAQg","he0EWmZlUi0","jlP19m73RPc","kAiAn3QR4P0","o4TMjuyGPNU","efJY17N7b6Y","wP5PPCeyaBs","MjwrCihm65E","FSMqNG_ORBk","1nit84hme0g","wGj7rOw7GV4","4x1Y2P1zPhA","SzYImP_tLM0","8GkX9gGaYDU","nty7atf_r_w","DL9AQ9kqXnE","9bAghbfV0nI","e_HW198dw9A","xhd0FHSsDI8","Q_cmtYyy9NA","sYDgmyDUuvc","RjORnxtq8zA","keGWLDXzLEY","a-ofRBvxGGE","_dGnmEde-g4","HaAB5jjUdr8","J5v2afNJ_Ng","INNz6skKJko","bIkd1HYUiUU","iGZmx336Mj8","3ZALq4cjisI","GyaqdHLbw58","NhFAIVsjWn4","ALxGi82uh1I","of3zHIFw_5A","KfVXKXeJ09w","5c55M6s3skI","evUdPLSuFyU","RK8hldhZ2EE","Xu7VAs8L3G0","hBq-dYUw_wc","FUVtMpj019k","5hC9qNSgSoM","Pnr-RY1nUCE","Tnk8hEIEVR8","MMCfc1di0J8","b1fh3q_tpuI","m-cd8cFuFCI","VdmHc2EADXs","Ey7Bs3xlYNk","cBCIHpgUFkM","S3isabRv4iw","1hqInUean74","25ub0QgbOVY","1sUKPAWelk8","UO-Y65Ng1pY","ib_X9yG3E98","jHbfqacKHmk","h6e4jgIcKsY","8BkwUE3Ttoc","_HSTcu8zcXo","gi4QbMt11BE","ONp-b9VAxEE","HBQgqWz2ezo","c_5BrBXZFj8","bBR4_wkqo80"];
@@ -60,6 +60,13 @@ function paint(counts) {
   if (totalEl && total) totalEl.textContent = fmt(total) + "+";
   const viewsEl = document.querySelector("[data-count-views]");
   if (viewsEl && counts.__views) viewsEl.textContent = fmtViews(counts.__views);
+  for (const [id, n] of Object.entries(counts.__perVideo || {})) {
+    document.querySelectorAll(`.clip[data-video="${id}"] .meta`).forEach(meta => {
+      let b = meta.querySelector(".views");
+      if (!b) { b = document.createElement("span"); b.className = "views"; meta.appendChild(b); }
+      b.textContent = fmt(n) + " views";
+    });
+  }
   for (const [id, t] of Object.entries(counts.__titles || {})) {
     const d = typeof t === "string" ? { title: t, client: "" } : t;
     document.querySelectorAll(`[data-video="${id}"]`).forEach(a => {
@@ -71,6 +78,7 @@ function paint(counts) {
 }
 
 const TITLES = {};
+const PER_VIDEO = {}; // id -> view count, shown as a badge on each Work clip
 
 async function fetchViews() {
   if (!VIDEO_IDS.length) return 0;
@@ -80,7 +88,9 @@ async function fetchViews() {
     const r = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=statistics,snippet&id=${ids}&key=${YT_API_KEY}`);
     const j = await r.json();
     for (const v of j.items || []) {
-      sum += Number(v.statistics?.viewCount || 0);
+      const vc = Number(v.statistics?.viewCount || 0);
+      sum += vc;
+      if (vc) PER_VIDEO[v.id] = vc;
       if (v.snippet) TITLES[v.id] = { title: v.snippet.title || "", client: v.snippet.channelTitle || "" };
     }
   }
@@ -92,7 +102,7 @@ async function fetchCounts() {
   if (cached && Date.now() - cached.t < CACHE_TTL) { paint(cached.counts); return; }
   if (!YT_API_KEY) { if (VIEWS_FALLBACK) paint({ __views: VIEWS_FALLBACK }); return; }
   const counts = {};
-  try { counts.__views = await fetchViews(); counts.__titles = TITLES; } catch (e) { /* keep fallback */ }
+  try { counts.__views = await fetchViews(); counts.__titles = TITLES; counts.__perVideo = PER_VIDEO; } catch (e) { /* keep fallback */ }
   await Promise.all(CREATORS.filter(c => c.handle).map(async c => {
     try {
       const r = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&forHandle=${encodeURIComponent(c.handle)}&key=${YT_API_KEY}`);
