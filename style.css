@@ -153,6 +153,12 @@ section{padding:clamp(64px,8vw,100px) var(--gutter)}
 .who .stars{margin-left:auto}
 .vreview .vquote{padding:0 20px 20px;font-family:var(--serif);font-size:22px;line-height:1.25;font-weight:500;color:var(--cream)}
 .vreview .who{padding-bottom:14px}
+.review-group+.review-group{margin-top:clamp(48px,6vw,72px)}
+.group-label{display:flex;align-items:center;gap:16px;justify-content:center;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:28px}
+.group-label::before,.group-label::after{content:"";flex:0 1 80px;height:1px;background:rgba(255,241,199,.25)}
+.review-group .video-reviews{grid-template-columns:repeat(auto-fit,minmax(260px,380px));justify-content:center}
+.review-group .quotes{grid-template-columns:repeat(auto-fit,minmax(260px,380px));justify-content:center}
+.review-group .quote{padding:26px 26px}.review-group .quote p{font-size:clamp(20px,1.7vw,24px)}
 .quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
 .quote{position:relative;padding:30px 32px;background:var(--cream);color:var(--charcoal);box-shadow:0 14px 30px rgba(0,0,0,.45);display:flex;flex-direction:column;gap:16px}
 .quote:nth-child(1){transform:rotate(.7deg)}.quote:nth-child(2){transform:rotate(-.9deg)}
