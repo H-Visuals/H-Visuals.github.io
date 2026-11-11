@@ -6,6 +6,12 @@ document.body.appendChild(modal);
 const frame = modal.querySelector(".player-frame");
 
 function openVideo(id) {
+  if (/\.mp4$/.test(id)) {
+    frame.innerHTML = `<video src="${id}" controls autoplay playsinline></video>`;
+    modal.classList.add("open");
+    document.body.style.overflow = "hidden";
+    return;
+  }
   frame.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" title="Video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
   modal.classList.add("open");
   document.body.style.overflow = "hidden";
@@ -31,8 +37,10 @@ if (matchMedia("(hover: hover)").matches) {
     clearTimeout(timer);
     timer = setTimeout(() => {
       if (!a.matches(":hover")) return;
-      const f = document.createElement("iframe");
+      const local = /\.mp4$/.test(a.dataset.video);
+      const f = document.createElement(local ? "video" : "iframe");
       f.className = "preview";
+      if (local) { f.muted = true; f.autoplay = true; f.loop = true; f.playsInline = true; f.src = a.dataset.video; a.appendChild(f); requestAnimationFrame(() => a.classList.add("previewing")); return; }
       f.src = `https://www.youtube-nocookie.com/embed/${a.dataset.video}?autoplay=1&controls=0&rel=0&playsinline=1&modestbranding=1&start=0`;
       f.allow = "autoplay; encrypted-media";
       f.tabIndex = -1;
