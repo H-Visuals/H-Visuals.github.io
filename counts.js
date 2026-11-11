@@ -14,6 +14,7 @@ const CREATORS = [
   { id: "sam-harborne", handle: "SamHarborneUncut" },
   { id: "sal-sanchez",  handle: "Salsanchez_" },
   { id: "sol-brah",     handle: "realsolbrah", keepLabel: true }, // card shows Instagram followers; YouTube subs still count toward the total
+  { id: "affedoom",     handle: "affedoomspelar" }, // no card on the page; subs still count toward the total
 ];
 
 const CACHE_KEY = "hv-sub-counts-v10";
